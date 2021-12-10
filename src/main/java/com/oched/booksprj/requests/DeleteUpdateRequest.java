@@ -9,19 +9,9 @@ import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class AddBookRequest {
+@AllArgsConstructor
+public class DeleteUpdateRequest {
     @NotBlank
     private long id;
-    @NotBlank
-    private String title;
-    @NotBlank
-    private int year;
-    @NotBlank
-    private String authorFirstName;
-    @NotBlank
-    private String authorLastName;
-    @NotBlank
-    private String content;
 }

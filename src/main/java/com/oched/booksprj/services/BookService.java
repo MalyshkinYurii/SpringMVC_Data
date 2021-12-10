@@ -7,6 +7,7 @@ import com.oched.booksprj.repositories.BookContentRepository;
 import com.oched.booksprj.requests.AddBookRequest;
 import com.oched.booksprj.repositories.AuthorRepository;
 import com.oched.booksprj.repositories.BookRepository;
+import com.oched.booksprj.requests.DeleteUpdateRequest;
 import com.oched.booksprj.responses.BookResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,7 @@ public class BookService {
             );
 
             authorRepository.save(author);
+
         }
 
         BookContentEntity bookContent = new BookContentEntity(request.getContent());
@@ -56,6 +58,7 @@ public class BookService {
         );
 
         bookRepository.save(newBook);
+
     }
 
     public List<BookResponse> getAll() {
@@ -67,5 +70,11 @@ public class BookService {
                     book.getAuthor().getFirstName(),
                     book.getAuthor().getLastName()
                 )).collect(Collectors.toList());
+    }
+    public void deleteBook(DeleteUpdateRequest request) {
+        BookDescriptionEntity book = bookRepository.getById(request.getId());
+        bookRepository.delete(book);
+        authorRepository.delete(book.getAuthor());
+        contentRepository.delete(book.getContent());
     }
 }

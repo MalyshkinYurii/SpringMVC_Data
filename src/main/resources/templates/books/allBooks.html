@@ -11,6 +11,7 @@
         <th>Year | </th>
         <th>Author first name | </th>
         <th>Author last name</th>
+        <th class="th-center">Delete or Update</th>
     </tr>
     </thead>
     <tbody>
@@ -19,6 +20,12 @@
         <td th:text="${book.year}"></td>
         <td th:text="${book.authorFirstName}"></td>
         <td th:text="${book.authorLastName}"></td>
+        <td>
+            <form class="table-button">
+                <input class="table-button" type="submit" value="update" th:formaction="@{../books/update}" formmethod="get">
+                <input class="table-button" type="submit" value="delete" th:formaction="@{../books/delete}" formmethod="post">
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
